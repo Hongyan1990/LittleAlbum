@@ -2,6 +2,8 @@ var fs = require("fs");
 
 exports.getAllDirectory = getAllDirectory;
 exports.getImageNameByAlbums = getImageNameByAlbums;
+exports.getDirNames = getDirNames;
+
 function getAllDirectory(callback) {
 	fs.readdir("./uploads", (err, files) => {
 		if(err) {
@@ -51,5 +53,15 @@ function getImageNameByAlbums(albumName, callback) {
 				iterator(i + 1);
 			});
 		})(0)
+	});
+}
+
+function getDirNames(callback) {
+	fs.readdir("./uploads/", (err, files) => {
+		if(err) {
+			callback("找不到uploads文件夹", null);
+			return;
+		}
+		callback(null, files);
 	});
 }

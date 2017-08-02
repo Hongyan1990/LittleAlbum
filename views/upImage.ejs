@@ -31,25 +31,28 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="/">全部相册 <span class="sr-only">(current)</span></a></li>
-                <li><a href="/up">上传图片</a></li>
+                <li><a href="/">全部相册 <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/up">上传图片</a></li>
               </ul>
             </div>
           </div>
         </nav>
-        <ol class="breadcrumb">
-		  <li><a href="/">全部相册</a></li>
-		  <li><a href="#"><%= albumName %></a></li>
-		</ol>
-        <div class="row">
-        	<% for(var i=0; i<images.length; i++){%>
-                <div class="col-xs-6 col-md-3 dir_name">
-                	<a href="#" class="thumbnail">
-				        <img src="<%= images[i] %>" alt="...">
-				    </a>
-                </div> 
-            <% } %>    
-        </div>
+        <form style="width:20%" action="/up" enctype="multipart/form-data" method="post">
+          <div class="form-group">
+            <label for="exampleInputEmail1">选择要上传到的文件夹</label>
+            <select class="form-control" name="dirName">
+            <% for(var i=0; i< dirNames.length; i++) { %>
+              <option><%= dirNames[i] %></option>
+            <% } %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" id="exampleInputFile" name="imageName">
+            <p class="help-block">Example block-level help text here.</p>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
     </div>
     
 
